@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: carekeeper-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: HOST
+        value: 0.0.0.0
+      - key: BASE_URL
+        value: https://open.bigmodel.cn/api/paas/v4
+      - key: MODEL
+        value: glm-4-flash
+      - key: ASR_MODEL
+        value: glm-asr-2512
+      - key: API_KEY
+        sync: false
